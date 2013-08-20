@@ -1,6 +1,7 @@
 #
-# Cookbook Name:: dotnet_demo
+# Cookbook Name:: nopcommerce
 # Recipe:: default
+# Author:: Julian C. Dunn (<jdunn@opscode.com>)
 #
 # Copyright (C) 2013 Opscode, Inc.
 # 
