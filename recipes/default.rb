@@ -18,6 +18,8 @@
 # limitations under the License.
 #
 
+::Chef::Recipe.send(:include, Windows::Helper)
+
 # Install nopCommerce pre-requisites without using WebPI.
 
 windows_feature 'IIS-WebServerRole' do
@@ -72,13 +74,13 @@ end
 #    \web.config
 
 %w{App_Data bin Content Content\\Images Content\\Images\\Thumbs Content\\Images\\Uploaded Content\\files\\ExportImport Plugins Plugins\\bin}.each do |d|
-  directory ::File.join(node['nopcommerce']['approot'], 'nopCommerce', d) do
+  directory win_friendly_path(::File.join(node['nopcommerce']['approot'], 'nopCommerce', d)) do
     rights :modify, 'IIS_IUSRS'
   end
 end
 
 %w{Global.asax web.config}.each do |f|
-  file ::File.join(node['nopcommerce']['approot'], 'nopCommerce', f) do
+  file win_friendly_path(::File.join(node['nopcommerce']['approot'], 'nopCommerce', f)) do
     rights :modify, 'IIS_IUSRS'
   end
 end
@@ -98,11 +100,13 @@ iis_site 'nopCommerce' do
   protocol :http
   port 80
   path node['nopcommerce']['siteroot']
+  application_pool node['nopcommerce']['poolname']
   action [:add,:start]
 end
 
 iis_app 'nopCommerce' do
   application_pool node['nopcommerce']['poolname']
-  physical_path ::File.join(node['nopcommerce']['approot'], 'nopCommerce')
+  path node['nopcommerce']['apppath']
+  physical_path "#{node['nopcommerce']['approot']}\\nopCommerce"
   action :add
 end

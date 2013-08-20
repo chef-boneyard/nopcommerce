@@ -22,4 +22,5 @@ default['nopcommerce']['dist'] = 'https://dl.dropboxusercontent.com/u/47541301/n
 # I like to isolate these away from the default, wwwroot
 default['nopcommerce']['siteroot'] = "#{ENV['SYSTEMDRIVE']}\\inetpub\\sites\\nopCommerce"
 default['nopcommerce']['approot'] = "#{ENV['SYSTEMDRIVE']}\\inetpub\\apps"
+default['nopcommerce']['apppath'] = '/shop'
 default['nopcommerce']['poolname'] = 'nopCommerce'
