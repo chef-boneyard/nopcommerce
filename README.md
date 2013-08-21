@@ -6,11 +6,21 @@ Installs and configures the nopCommerce ASP.NET shopping cart application.
 Requirements
 ============
 
-Platform
---------
+Platforms
+---------
 
 * Windows Server 2012
 * Windows Server 2012 R2
+
+Windows Server 2008 and 2008 R2 may work, but I have not yet tested them.
+
+Cookbooks
+---------
+
+Lightweight Resources and Providers (LWRPs) from the following cookbooks are used:
+
+* iis
+* windows
 
 Attributes
 ----------

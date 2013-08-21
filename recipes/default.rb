@@ -20,22 +20,15 @@
 
 ::Chef::Recipe.send(:include, Windows::Helper)
 
-# Install nopCommerce pre-requisites without using WebPI.
-
 windows_feature 'IIS-WebServerRole' do
   action :install
 end
 
-# Some pre-requisite features for IIS-ASPNET that need to be installed first, in this order!
-%w{IIS-ISAPIFilter IIS-ISAPIExtensions NetFx3ServerFeatures NetFx4Extended-ASPNET45}.each do |f|
+# Pre-requisite features for IIS-ASPNET45 that need to be installed first, in this order.
+%w{IIS-ISAPIFilter IIS-ISAPIExtensions NetFx3ServerFeatures NetFx4Extended-ASPNET45 IIS-NetFxExtensibility45}.each do |f|
   windows_feature f do
     action :install
   end
-end
-
-# Pre-requisites for IIS-ASPNET45
-windows_feature 'IIS-NetFxExtensibility45' do
-  action :install
 end
 
 windows_feature 'IIS-ASPNET45' do
