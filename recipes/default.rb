@@ -30,6 +30,7 @@ end
 %w{IIS-ISAPIFilter IIS-ISAPIExtensions NetFx3ServerFeatures NetFx3 NetFx4Extended-ASPNET45 IIS-NetFxExtensibility}.each do |f|
   windows_feature f do
     action :install
+    retries 5 # sometimes DISM.EXE will claim to not find features that are actually there
   end
 end
 
