@@ -27,15 +27,10 @@ windows_feature 'IIS-WebServerRole' do
 end
 
 # Some pre-requisite features for IIS-ASPNET that need to be installed first, in this order!
-%w{IIS-ISAPIFilter IIS-ISAPIExtensions NetFx3ServerFeatures NetFx3 NetFx4Extended-ASPNET45 IIS-NetFxExtensibility}.each do |f|
+%w{IIS-ISAPIFilter IIS-ISAPIExtensions NetFx3ServerFeatures NetFx4Extended-ASPNET45}.each do |f|
   windows_feature f do
     action :install
-    retries 5 # sometimes DISM.EXE will claim to not find features that are actually there
   end
-end
-
-windows_feature 'IIS-ASPNET' do
-  action :install
 end
 
 # Pre-requisites for IIS-ASPNET45
@@ -59,20 +54,6 @@ windows_zipfile node['nopcommerce']['approot'] do
   action :unzip
   not_if {::File.exists?(::File.join(node['nopcommerce']['approot'], "nopCommerce"))}
 end
-
-# Grant modify access to IIS_IUSRS to the following directories per the
-# documentation:
-#    \App_Data\
-#    \bin\
-#    \Content\
-#    \Content\Images\
-#    \Content\Images\Thumbs\
-#    \Content\Images\Uploaded\
-#    \Content\files\ExportImport\
-#    \Plugins\
-#    \Plugins\bin\
-#    \Global.asax
-#    \web.config
 
 %w{App_Data bin Content Content\\Images Content\\Images\\Thumbs Content\\Images\\Uploaded Content\\files\\ExportImport Plugins Plugins\\bin}.each do |d|
   directory win_friendly_path(::File.join(node['nopcommerce']['approot'], 'nopCommerce', d)) do
