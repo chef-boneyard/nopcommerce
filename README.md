@@ -12,7 +12,7 @@ Platforms
 * Windows Server 2012
 * Windows Server 2012 R2
 
-Windows Server 2008 and 2008 R2 may work, but I have not yet tested them.
+Windows Server 2008 and 2008 R2, as tested on ec2, do not appear to be working.
 
 Cookbooks
 ---------
@@ -40,6 +40,12 @@ Attributes
     <td><tt>https://dl.dropboxusercontent.com/u/47541301/nopCommerce/nopCommerce_3.10_NoSource.zip</tt></td>
   </tr>
   <tr>
+    <td><tt>['nopcommerce']['demozip']</tt></td>
+    <td>String</td>
+    <td>Where to get the demo data zip file from</td>
+    <td><tt>https://dl.dropboxusercontent.com/u/14471872/nopcommerce_data.zip</tt></td>
+  </tr>
+  <tr>
     <td><tt>['nopcommerce']['siteroot']</tt></td>
     <td>String</td>
     <td>Where the site root is for the nopCommerce website on this server</td>
@@ -50,6 +56,12 @@ Attributes
     <td>String</td>
     <td>Where the application will be installed to. The directory nopCommerce will be created here.</td>
     <td><tt>#{ENV['SYSTEMDRIVE']}\\inetpub\\apps</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['nopcommerce']['apppath']</tt></td>
+    <td>String</td>
+    <td>The relative path to the nopCommerce directory where the shop files will be created.</td>
+    <td><tt>/shop</tt></td>
   </tr>
   <tr>
     <td><tt>['nopcommerce']['poolname']</tt></td>
@@ -71,6 +83,19 @@ Just include `nopcommerce` in your node's `run_list`:
   "name":"my_node",
   "run_list": [
     "recipe[nopcommerce]"
+  ]
+}
+```
+
+#### nopcommerce::demo
+
+Installs demo data using built-in data storage (SQL Server Compact). Just include `nopcommerce::demo` in your node's `run_list`. The demo is reachable at http://your.server.name/shop :
+
+```json
+{
+  "name":"my_node",
+  "run_list": [
+    "recipe[nopcommerce::demo]"
   ]
 }
 ```
