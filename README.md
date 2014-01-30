@@ -37,7 +37,7 @@ Attributes
     <td><tt>['nopcommerce']['dist']</tt></td>
     <td>String</td>
     <td>Where to get the zip file from</td>
-    <td><tt>https://dl.dropboxusercontent.com/u/47541301/nopCommerce/nopCommerce_3.10_NoSource.zip</tt></td>
+    <td><tt>https://dl.dropboxusercontent.com/u/14471872/nopCommerce_3.10_NoSource.zip</tt></td>
   </tr>
   <tr>
     <td><tt>['nopcommerce']['demozip']</tt></td>
