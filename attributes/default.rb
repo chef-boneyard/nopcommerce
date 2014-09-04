@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-default['nopcommerce']['dist'] = 'https://dl.dropboxusercontent.com/u/14471872/nopCommerce_3.10_NoSource.zip'
+default['nopcommerce']['dist'] = 'https://www.dropbox.com/s/2l5llea3rsm1uxx/nopcommerce.zip?dl=1'
 default['nopcommerce']['demozip'] = 'https://dl.dropboxusercontent.com/u/14471872/nopcommerce_data.zip'
 
 # I like to isolate these away from the default, wwwroot
