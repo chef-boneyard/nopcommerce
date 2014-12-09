@@ -17,11 +17,21 @@
 # limitations under the License.
 #
 
+
+
 default['nopcommerce']['dist'] = 'https://www.dropbox.com/s/2l5llea3rsm1uxx/nopcommerce.zip?dl=1'
 default['nopcommerce']['demozip'] = 'https://dl.dropboxusercontent.com/u/14471872/nopcommerce_data.zip'
+
+default['nopcommerce']['sqlfile'] = 'nopcom.sql'
+default['nopcommerce']['sqlzip'] = 'https://www.dropbox.com/s/82a0d8gmdcmbm7d/nopcom.zip?dl=1'
 
 # I like to isolate these away from the default, wwwroot
 default['nopcommerce']['siteroot'] = "#{ENV['SYSTEMDRIVE']}\\inetpub\\sites\\nopCommerce"
 default['nopcommerce']['approot'] = "#{ENV['SYSTEMDRIVE']}\\inetpub\\apps"
 default['nopcommerce']['apppath'] = '/shop'
 default['nopcommerce']['poolname'] = 'nopCommerce'
+
+#credentials if using standalone SQL Server
+default['nopcommerce']['dbuser'] = 'nopcom'
+default['nopcommerce']['dbpassword'] = 'nopcom'
+default['nopcommerce']['dbserver'] = 'windowsdb'
