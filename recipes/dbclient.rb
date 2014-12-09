@@ -30,7 +30,7 @@ template settings_template do
 	rights :modify, 'IIS_IUSRS'
 	variables(
 		:dbuser => node['nopcommerce']['dbuser'],
-		:dbpassword => node['nopcommerce']['dbpassword']
+		:dbpassword => node['nopcommerce']['dbpassword'],
 		:dbserver => node['nopcommerce']['dbserver']
 		)
 end
