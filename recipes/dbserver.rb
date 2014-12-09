@@ -47,7 +47,7 @@ db_lock = win_friendly_path(::File.join(zippath, 'nopcom.lock'))
 sql_file = win_friendly_path(::File.join(zippath, node['nopcommerce']['sqlfile']))
 
 powershell_script "loadDB" do 
-	cmd <<-EOF
+	code <<-EOF
 Import-Module sqlps
 
 Invoke-Sqlcmd -InputFile #{sql_file}
