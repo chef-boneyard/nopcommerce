@@ -34,7 +34,7 @@ service "MSSQLSERVER" do
 	action :nothing
 end
 
-zippath = win_friendly_path(node['nopcommerce']['approot'])
+zippath = win_friendly_path(::File.join('c:\\',node['nopcommerce']['sqlfile']))
 
 windows_zipfile zippath do
   source node['nopcommerce']['sqlzip']
@@ -42,9 +42,9 @@ windows_zipfile zippath do
   not_if {::File.exists?(::File.join(zippath,node['nopcommerce']['sqlfile']))}
 end
 
-db_lock = win_friendly_path(::File.join(node['nopcommerce']['approot'], 'nopcom.lock'))
+db_lock = win_friendly_path(::File.join(zippath, 'nopcom.lock'))
 
-sql_file = win_friendly_path(::File.join(zippath,node['nopcommerce']['sqlfile']))
+sql_file = win_friendly_path(::File.join(zippath, node['nopcommerce']['sqlfile']))
 
 powershell_script "loadDB" do 
 	cmd <<-EOF
