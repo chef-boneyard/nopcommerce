@@ -52,7 +52,7 @@ Import-Module sqlps
 
 Invoke-Sqlcmd -InputFile #{sql_file}
 	EOF
-	flags '-NoLogo -NonInteractive -NoProfile -ExecutionPolicy Unrestricted -InputFormat None '
+	flags '-ExecutionPolicy Unrestricted '
   notifies :create, "file[#{db_lock}]"
   not_if { ::File.exists?(db_lock) }
 end
