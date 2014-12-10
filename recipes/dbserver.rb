@@ -50,7 +50,7 @@ powershell_script "loadDB" do
 	code <<-EOF
 Import-Module sqlps
 
-Invoke-Sqlcmd -InputFile #{sql_file}
+Invoke-Sqlcmd -Username #{node['nopcommerce']['dbuser']} -Password #{node['nopcommerce']['dbpassword']} -InputFile #{sql_file}
 	EOF
 	flags '-ExecutionPolicy Unrestricted '
   notifies :create, "file[#{db_lock}]"
