@@ -26,6 +26,7 @@ dbserver = search("node", "role:#{node['nopcommerce']['dbserver_role']} AND chef
                   }
 	).first || []
 
+log dbserver
 
 settings_template = win_friendly_path(::File.join(node['nopcommerce']['approot'], 'nopCommerce', 'App_Data\\Settings.txt'))
 
