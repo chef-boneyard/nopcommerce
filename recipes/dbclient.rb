@@ -20,13 +20,7 @@
 
 ::Chef::Recipe.send(:include, Windows::Helper)
 
-dbserver = search("node", "role:#{node['nopcommerce']['dbserver_role']} AND chef_environment:#{node.chef_environment}",
-  :filter_result => { 'name' => [ 'name' ],
-                      'ip' => [ 'ipaddress' ]
-                  }
-	).first || []
-
-log dbserver
+dbserver = search("node", "role:#{node['nopcommerce']['dbserver_role']} AND chef_environment:#{node.chef_environment}").first['ipaddress'] || []
 
 settings_template = win_friendly_path(::File.join(node['nopcommerce']['approot'], 'nopCommerce', 'App_Data\\Settings.txt'))
 
@@ -37,7 +31,7 @@ template settings_template do
 	variables(
 		:dbuser => node['nopcommerce']['dbuser'],
 		:dbpassword => node['nopcommerce']['dbpassword'],
-		:dbserver => dbserver['ip'] || node['nopcommerce']['dbserver']
+		:dbserver => dbserver || node['nopcommerce']['dbserver']
 		)
 end
 
