@@ -5,13 +5,13 @@ DiscountRequirement.MustBeAssignedToCustomerRole
 CurrencyExchange.MoneyConverter
 ExternalAuth.OpenId
 ExternalAuth.Facebook
+Misc.FacebookShop
 Misc.WebServices
 Payments.CashOnDelivery
 Payments.CheckMoneyOrder
-Payments.Manual
 Payments.AuthorizeNet
+Payments.Manual
 Payments.PayPalDirect
-Payments.GoogleCheckout
 Payments.PayPalStandard
 Payments.PurchaseOrder
 PromotionFeed.Froogle
