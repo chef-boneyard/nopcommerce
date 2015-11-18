@@ -1,9 +1,9 @@
 #
 # Cookbook Name:: nopcommerce
 # Recipe:: database
-# Author:: Julian C. Dunn (<jdunn@opscode.com>)
+# Author:: Julian C. Dunn (<jdunn@chef.io>)
 #
-# Copyright (C) 2013 Opscode, Inc.
+# Copyright (C) 2013-2015 Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
