@@ -1,13 +1,16 @@
 name             'nopcommerce'
 maintainer       'Chef Software, Inc.'
-maintainer_email 'jdunn@getchef.com'
+maintainer_email 'cookbooks@chef.io'
 license          'Apache 2.0'
 description      'Installs and configures nopCommerce, the shopping cart software for ASP.NET'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.1.2'
 
-%w{iis windows}.each do |d|
+%w(iis windows).each do |d|
   depends d
 end
 
 supports 'windows'
+
+source_url 'https://github.com/chef-cookbooks/nopcommerce' if respond_to?(:source_url)
+issues_url 'https://github.com/chef-cookbooks/nopcommerce/issues' if respond_to?(:issues_url)
