@@ -1,16 +1,16 @@
 #
 # Cookbook Name:: nopcommerce
 # Recipe:: demo
-# Author:: Bakh Inamov (<bakh@opscode.com>)
+# Author:: Bakh Inamov (<bakh@chef.io>)
 #
-# Copyright (C) 2013 Opscode, Inc.
-# 
+# Copyright (C) 2013-2015 Chef Software, Inc.
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #    http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,11 +18,11 @@
 # limitations under the License.
 #
 
-include_recipe "nopcommerce"
+include_recipe 'nopcommerce'
 
 windows_zipfile "#{node['nopcommerce']['approot']}\\nopCommerce" do
   source node['nopcommerce']['demozip']
   action :unzip
   overwrite true
-  not_if {::File.exists?(::File.join(node['nopcommerce']['approot'], 'nopCommerce\App_Data\Nop.Db.sdf'))}
+  not_if { ::File.exist?(::File.join(node['nopcommerce']['approot'], 'nopCommerce\App_Data\Nop.Db.sdf')) }
 end
