@@ -1,31 +1,25 @@
-Description
-===========
+# nopcommerce Cookbook
+[![Build Status](https://travis-ci.org/chef-cookbooks/nopcommerce.svg?branch=master)](https://travis-ci.org/chef-cookbooks/nopcommerce) [![Cookbook Version](https://img.shields.io/cookbook/v/nopcommerce.svg)](https://supermarket.chef.io/cookbooks/nopcommerce)
 
 Installs and configures the nopCommerce ASP.NET shopping cart application.
 
-Requirements
-============
-
-Platforms
----------
-
-* Windows Server 2012
-* Windows Server 2012 R2
+## Requirements
+### Platforms
+- Windows Server 2012
+- Windows Server 2012 R2
 
 Windows Server 2008 and 2008 R2, as tested on ec2, do not appear to be working.
 
-Cookbooks
----------
+### Chef
+- Chef 11+
 
+### Cookbooks
 Lightweight Resources and Providers (LWRPs) from the following cookbooks are used:
+- iis
+- windows
 
-* iis
-* windows
-
-Attributes
-----------
-
-#### nopcommerce::default
+## Attributes
+### nopcommerce::default
 <table>
   <tr>
     <th>Key</th>
@@ -71,11 +65,8 @@ Attributes
   </tr>
 </table>
 
-Usage
-=====
-
-#### nopcommerce::default
-
+# Usage
+## nopcommerce::default
 Just include `nopcommerce` in your node's `run_list`:
 
 ```json
@@ -87,9 +78,8 @@ Just include `nopcommerce` in your node's `run_list`:
 }
 ```
 
-#### nopcommerce::demo
-
-Installs demo data using built-in data storage (SQL Server Compact). Just include `nopcommerce::demo` in your node's `run_list`. The demo is reachable at http://your.server.name/shop :
+## nopcommerce::demo
+Installs demo data using built-in data storage (SQL Server Compact). Just include `nopcommerce::demo` in your node's `run_list`. The demo is reachable at [http://your.server.name/shop](http://your.server.name/shop) :
 
 ```json
 {
@@ -100,23 +90,15 @@ Installs demo data using built-in data storage (SQL Server Compact). Just includ
 }
 ```
 
-Contributing
-------------
 
-1. Fork the repository on Github
-2. Create a named feature branch (like `add_component_x`)
-3. Write your change
-4. Write tests for your change (if applicable)
-5. Run the tests, ensuring they all pass
-6. Submit a Pull Request using Github
+# License & Author
+Author:: Julian C. Dunn ([jdunn@chef.io](mailto:jdunn@chef.io))
 
-License and Author
-==================
+Copyright:: 2013-2015, Chef Software, Inc.
 
-Author:: Julian C. Dunn (<jdunn@opscode.com>)
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
-Copyright:: 2013, Opscode, Inc.
-
+```
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -128,3 +110,4 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+```
