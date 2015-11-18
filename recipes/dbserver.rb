@@ -20,45 +20,43 @@
 
 ::Chef::Recipe.send(:include, Windows::Helper)
 
-registry_key "LoginMode" do
-	key "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Microsoft SQL Server\\MSSQL12.MSSQLSERVER2000\\MSSQLServer"
-	 values [{
-    :name => "LoginMode",
-    :type => :dword,
-    :data => 2
+registry_key 'LoginMode' do
+  key 'HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Microsoft SQL Server\\MSSQL12.MSSQLSERVER2000\\MSSQLServer'
+  values [{
+    name: 'LoginMode',
+    type: :dword,
+    data: 2
   }]
-  notifies :restart, "service[MSSQLSERVER]"
+  notifies :restart, 'service[MSSQLSERVER]'
 end
 
-service "MSSQLSERVER" do
-	action :nothing
+service 'MSSQLSERVER' do
+  action :nothing
 end
 
-zippath = win_friendly_path(::File.join('c:\\',node['nopcommerce']['sqlfile']))
+zippath = win_friendly_path(::File.join('c:\\', node['nopcommerce']['sqlfile']))
 
 windows_zipfile zippath do
   source node['nopcommerce']['sqlzip']
   action :unzip
-  not_if {::File.exists?(::File.join(zippath,node['nopcommerce']['sqlfile']))}
+  not_if { ::File.exist?(::File.join(zippath, node['nopcommerce']['sqlfile'])) }
 end
 
 db_lock = win_friendly_path(::File.join(zippath, 'nopcom.lock'))
 
 sql_file = win_friendly_path(::File.join(zippath, node['nopcommerce']['sqlfile']))
 
-powershell_script "loadDB" do
-	code <<-EOF
+powershell_script 'loadDB' do
+  code <<-EOF
 Import-Module sqlps
 
 Invoke-Sqlcmd -Username #{node['nopcommerce']['dbuser']} -Password #{node['nopcommerce']['dbpassword']} -InputFile #{sql_file}
-	EOF
-	flags '-ExecutionPolicy Unrestricted '
+  EOF
+  flags '-ExecutionPolicy Unrestricted '
   notifies :create, "file[#{db_lock}]"
-  not_if { ::File.exists?(db_lock) }
+  not_if { ::File.exist?(db_lock) }
 end
 
 file db_lock do
-	action :nothing
+  action :nothing
 end
-
-

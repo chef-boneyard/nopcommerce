@@ -18,11 +18,11 @@
 # limitations under the License.
 #
 
-include_recipe "nopcommerce"
+include_recipe 'nopcommerce'
 
 windows_zipfile "#{node['nopcommerce']['approot']}\\nopCommerce" do
   source node['nopcommerce']['demozip']
   action :unzip
   overwrite true
-  not_if {::File.exists?(::File.join(node['nopcommerce']['approot'], 'nopCommerce\App_Data\Nop.Db.sdf'))}
+  not_if { ::File.exist?(::File.join(node['nopcommerce']['approot'], 'nopCommerce\App_Data\Nop.Db.sdf')) }
 end

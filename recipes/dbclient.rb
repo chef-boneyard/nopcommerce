@@ -20,25 +20,24 @@
 
 ::Chef::Recipe.send(:include, Windows::Helper)
 
-dbserver = search("node", "role:#{node['nopcommerce']['dbserver_role']} AND chef_environment:#{node.chef_environment}").first['ipaddress'] || []
+dbserver = search('node', "role:#{node['nopcommerce']['dbserver_role']} AND chef_environment:#{node.chef_environment}").first['ipaddress'] || []
 
 settings_template = win_friendly_path(::File.join(node['nopcommerce']['approot'], 'nopCommerce', 'App_Data\\Settings.txt'))
 
 template settings_template do
-	source "Settings.txt.erb"
-	action :create
-	rights :modify, 'IIS_IUSRS'
-	variables(
-		:dbuser => node['nopcommerce']['dbuser'],
-		:dbpassword => node['nopcommerce']['dbpassword'],
-		:dbserver => dbserver || node['nopcommerce']['dbserver']
-		)
+  source 'Settings.txt.erb'
+  action :create
+  rights :modify, 'IIS_IUSRS'
+  variables(
+    dbuser: node['nopcommerce']['dbuser'],
+    dbpassword: node['nopcommerce']['dbpassword'],
+    dbserver: dbserver || node['nopcommerce']['dbserver']
+  )
 end
 
 plugins_file = win_friendly_path(::File.join(node['nopcommerce']['approot'], 'nopCommerce', 'App_Data\\InstalledPlugins.txt'))
 
 file plugins_file do
-	action :create
-	rights :modify, 'IIS_IUSRS'
+  action :create
+  rights :modify, 'IIS_IUSRS'
 end
-

@@ -25,7 +25,7 @@ windows_feature 'IIS-WebServerRole' do
 end
 
 # Pre-requisite features for IIS-ASPNET45 that need to be installed first, in this order.
-%w{IIS-ISAPIFilter IIS-ISAPIExtensions NetFx3ServerFeatures NetFx4Extended-ASPNET45 IIS-NetFxExtensibility45}.each do |f|
+%w(IIS-ISAPIFilter IIS-ISAPIExtensions NetFx3ServerFeatures NetFx4Extended-ASPNET45 IIS-NetFxExtensibility45).each do |f|
   windows_feature f do
     action :install
   end
@@ -35,33 +35,33 @@ windows_feature 'IIS-ASPNET45' do
   action :install
 end
 
-service "iis" do
-  service_name "W3SVC"
+service 'iis' do
+  service_name 'W3SVC'
   action :nothing
 end
 
-include_recipe "iis::remove_default_site"
+include_recipe 'iis::remove_default_site'
 
 windows_zipfile node['nopcommerce']['approot'] do
   source node['nopcommerce']['dist']
   action :unzip
-  not_if {::File.exists?(::File.join(node['nopcommerce']['approot'], "nopCommerce"))}
+  not_if { ::File.exist?(::File.join(node['nopcommerce']['approot'], 'nopCommerce')) }
 end
 
-%w{App_Data bin Content Content\\Images Content\\Images\\Thumbs Content\\Images\\Uploaded Content\\files\\ExportImport Plugins Plugins\\bin}.each do |d|
+%w(App_Data bin Content Content\\Images Content\\Images\\Thumbs Content\\Images\\Uploaded Content\\files\\ExportImport Plugins Plugins\\bin).each do |d|
   directory win_friendly_path(::File.join(node['nopcommerce']['approot'], 'nopCommerce', d)) do
     rights :modify, 'IIS_IUSRS'
   end
 end
 
-%w{Global.asax web.config}.each do |f|
+%w(Global.asax web.config).each do |f|
   file win_friendly_path(::File.join(node['nopcommerce']['approot'], 'nopCommerce', f)) do
     rights :modify, 'IIS_IUSRS'
   end
 end
 
 iis_pool node['nopcommerce']['poolname'] do
-  runtime_version "4.0"
+  runtime_version '4.0'
   action :add
 end
 
@@ -76,7 +76,7 @@ iis_site 'nopCommerce' do
   port 80
   path node['nopcommerce']['siteroot']
   application_pool node['nopcommerce']['poolname']
-  action [:add,:start]
+  action [:add, :start]
 end
 
 iis_app 'nopCommerce' do
