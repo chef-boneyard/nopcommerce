@@ -12,5 +12,6 @@ end
 
 supports 'windows'
 
-source_url 'https://github.com/chef-cookbooks/nopcommerce' if respond_to?(:source_url)
-issues_url 'https://github.com/chef-cookbooks/nopcommerce/issues' if respond_to?(:issues_url)
+source_url 'https://github.com/chef-cookbooks/nopcommerce'
+issues_url 'https://github.com/chef-cookbooks/nopcommerce/issues'
+chef_version '>= 12.1'

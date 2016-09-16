@@ -11,7 +11,7 @@ Installs and configures the nopCommerce ASP.NET shopping cart application.
 Windows Server 2008 and 2008 R2, as tested on ec2, do not appear to be working.
 
 ### Chef
-- Chef 11+
+- Chef 12.1+
 
 ### Cookbooks
 Lightweight Resources and Providers (LWRPs) from the following cookbooks are used:
@@ -94,7 +94,7 @@ Installs demo data using built-in data storage (SQL Server Compact). Just includ
 # License & Author
 Author:: Julian C. Dunn ([jdunn@chef.io](mailto:jdunn@chef.io))
 
-Copyright:: 2013-2015, Chef Software, Inc.
+Copyright:: 2013-2016, Chef Software, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
