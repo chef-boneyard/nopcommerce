@@ -3,7 +3,14 @@ CHANGELOG
 
 This file is used to list changes made in each version of the nopcommerce cookbook.
 
+## 1.0.1 (2017-04-26)
+
+- Cookstyle fixes
+- Test with Delivery Local Mode
+- Update apache2 license string
+
 ## 1.0.0 (2016-09-16)
+
 - Testing updates
 - Require Chef 12.1
 
